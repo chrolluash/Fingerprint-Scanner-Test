@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fingerprint Test</title>
+    <script src="jquery-1.3.2.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fingerprint Test</h1>
+        </header>
+
+        <div class="status-bar">
+            <div class="connection-status">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="connectionText">Disconnected</span>
+            </div>
+            <div class="connection-buttons">
+                <button id="host_connect">Connect</button>
+                <button id="host_close" disabled>Disconnect</button>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <!-- Left Column: Fingerprint Display -->
+            <div class="card">
+                <div class="card-title">Scanner Preview</div>
+                <div class="fingerprint-display">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAkCAYAAABIdFAMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHhJREFUeNo8zjsOxCAMBFB/KEAUFFR0Cbng3nQPw68ArZdAlOZppPFIBhH5EAB8b+Tlt9MYQ6i1BuqFaq1CKSVcxZ2Acs6406KUgpt5/LCKuVgz5BDCSb13ZO99ZOdcZGvt4mJjzMVKqcha68iIePB86GAiOv8CDADlIUQBs7MD3wAAAABJRU5ErkJggg==" 
+                         alt="Fingerprint Preview" 
+                         id="imgDiv" />
+                </div>
+                <div class="status-message" id="es">Ready</div>
+                
+                <!-- Registration Name Input -->
+                <div id="registrationForm" style="margin-bottom: 20px;">
+                    <input type="text" 
+                           id="userName" 
+                           placeholder="Enter name to register" 
+                           style="width: 100%; padding: 12px; border: 1px solid #313B4B; border-radius: 6px; font-size: 14px; background: #15191D; color: #e0e0e0;"
+                    />
+                </div>
+                
+                <!-- Current User Display -->
+                <div id="currentUser" style="display: none; background: #313B4B; border: 1px solid #6F6F6F; border-radius: 6px; padding: 12px; margin-bottom: 10px; text-align: center;">
+                    <span style="color: #e0e0e0; font-size: 13px; font-weight: 500;">Enrolled: <span id="displayName"></span></span>
+                </div>
+                
+                <div class="action-buttons">
+                    <button onclick="EnrollTemplate()">Enroll</button>
+                    <button onclick="GetTemplate()">Capture</button>
+                </div>
+                <div class="instruction-text">Place finger on scanner when prompted</div>
+            </div>
+
+            <!-- Right Column: Actions -->
+            <div class="card">
+                <div class="card-title">Authentication</div>
+                <div class="template-label">Enrolled Template</div>
+                <textarea id="e1" rows="4" placeholder="Base64 enrolled template will appear here..." readonly></textarea>
+                
+                <div class="template-label" style="margin-top: 20px;">Captured Template</div>
+                <textarea id="e2" rows="4" placeholder="Base64 captured template will appear here..." readonly></textarea>
+
+                <div class="match-section">
+                    <button class="primary-button" onclick="MatchTemplate()" style="width: 100%;">
+                        Verify Match
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Console Log -->
+        <div class="template-section">
+            <div class="template-label">System Log</div>
+            <div class="console-wrapper">
+                <pre id="console"></pre>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 30px 0 10px; color: #6F6F6F; font-size: 12px; letter-spacing: 0.5px;">
+        HF4000 Fingerprint Scanner Test &mdash; &copy; 2026 All Rights Reserved. Lance Tinoco
+    </footer>
+
+    <script src="process.js"></script>
+</body>
+</html>
